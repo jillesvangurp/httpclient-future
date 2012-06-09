@@ -28,6 +28,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -72,6 +74,12 @@ public class SimpleFutureSupportingHttpClientTest {
 		Assert.assertTrue(future.cancel(true));
 
 		future.get();
+	}
+
+	@Test(expectedExceptions=TimeoutException.class)
+	public void shouldFailBecauseOfTimeout() throws InterruptedException, ExecutionException, TimeoutException {
+		Future<String> future = client.execute(new HttpGet("http://www.nu.nl"));
+		future.get(10,TimeUnit.MILLISECONDS);
 	}
 
 	@Test(expectedExceptions=ExecutionException.class)
