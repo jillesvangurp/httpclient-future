@@ -8,7 +8,7 @@ The SimpleFutureSupportingHttpClient class in this project fills this need.
 
 h1. Usage
 
-Take a look at the unit test. "unit test":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/SimpleFutureSupportingHttpClientTest.java
+Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/SimpleFutureSupportingHttpClientTest.java
 
 Basically, you provide an httpclient instance, and executor for scheduling the requests, and a response handler for handling the requests.
 
