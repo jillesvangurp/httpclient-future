@@ -10,10 +10,12 @@ h1. Usage
 
 Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/SimpleFutureSupportingHttpClientTest.java
 
-Basically, you provide an httpclient instance, and executor for scheduling the requests, and a response handler for handling the requests.
+Basically, you provide an httpclient instance, an executor for scheduling the requests, and a response handler for handling the requests.
 
 h1. Installation
 
-It's a maven project. So, checking it out and doing a mvn clean install should do the trick. If there is demand for it, I may eventually deploy a stable jar somewhere.
+It's a maven project. So, checking it out and doing a mvn clean install should do the trick. If there is demand for it, I may eventually deploy a stable jar somewhere. If you really need this, please contact me.
 
 However, since it is only one class and an interface, I recommend you simply copy it into your project and adapt it to your needs. The license allows you to do this and I have no problems with this.
+
+Should anyone like this licensed differently, please contact me.
