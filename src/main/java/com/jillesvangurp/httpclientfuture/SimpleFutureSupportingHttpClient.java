@@ -31,6 +31,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpRequestBase;
 import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.protocol.HttpContext;
 
 /**
  * Allows treatment of the result of an httpclient call as a Future. This class uses an executor and a response handler
@@ -48,15 +49,38 @@ public class SimpleFutureSupportingHttpClient<T> implements FutureSupportingHttp
 
 	private final ResponseHandler<T> responseHandler;
 
+	/**
+	 * Create a new client instance. The instance is thread safe and you should only need one. You may want to create
+	 * multiple clients for each web service type instead of having them share the executor pool. That way, you have
+	 * more fine-grained control over the number of requests flowing in each direction.
+	 * @param httpclient you should tune your httpclient instance to match your needs. You should align the max number
+	 * of connections in the pool and the number of threads in the executor; it doesn't make sense to have more threads
+	 * than connections and if you have less connections than threads, the threads will just end up blocking on getting
+	 * a connection from the pool.
+	 * @param executor any executor will do here. E.g. Executors.newFixedThreadPool(numberOfThreads)
+	 * @param responseHandler a httpclient response handler. This class is responsible for handling responses and
+	 * extracting whichever value T you need.
+	 */
 	public SimpleFutureSupportingHttpClient(HttpClient httpclient, Executor executor, ResponseHandler<T> responseHandler) {
 		this.httpclient = httpclient;
 		this.executor = executor;
 		this.responseHandler = responseHandler;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.jillesvangurp.httpclientfuture.FutureSupportingHttpClient#execute(org.apache.http.client.methods.HttpRequestBase)
+	 */
 	@Override
 	public Future<T> execute(final HttpRequestBase request) {
-		HttpClientCallable callable = new HttpClientCallable(httpclient, responseHandler, request);
+		return execute(request, null);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.jillesvangurp.httpclientfuture.FutureSupportingHttpClient#execute(org.apache.http.client.methods.HttpRequestBase, org.apache.http.protocol.HttpContext)
+	 */
+	@Override
+	public Future<T> execute(HttpRequestBase request, HttpContext context) {
+		HttpClientCallable callable = new HttpClientCallable(httpclient, responseHandler, request, context);
 		HttpClientFutureTask httpRequestFutureTask = new HttpClientFutureTask(request, callable, callable.cancelled());
 		executor.execute(httpRequestFutureTask);
 		return httpRequestFutureTask;
@@ -95,16 +119,19 @@ public class SimpleFutureSupportingHttpClient<T> implements FutureSupportingHttp
 
 		private final AtomicBoolean cancelled = new AtomicBoolean(false);
 
-		private HttpClientCallable(HttpClient httpClient, ResponseHandler<T> responseHandler, HttpUriRequest request) {
+		private final HttpContext context;
+
+		private HttpClientCallable(HttpClient httpClient, ResponseHandler<T> responseHandler, HttpUriRequest request, HttpContext context) {
 			this.httpclient = httpClient;
 			this.responseHandler = responseHandler;
 			this.request = request;
+			this.context = context;
 		}
 
 		@Override
 		public T call() throws Exception {
 			if (!cancelled.get()) {
-				return httpclient.execute(request, responseHandler);
+				return httpclient.execute(request, responseHandler, context);
 			}
 			else {
 				throw new IllegalStateException("call has been cancelled for request " + request.getURI());
