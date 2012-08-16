@@ -4,11 +4,11 @@ Httpclient is a very useful framework that allows you to write well performing a
 
 Httpclient v4 introduced a new API with loads of improvement. One curious omission was the lack of a way to schedule requests for execution and represent the outcome as a future. 
 
-The "FutureSupportingHttpClient":https://github.com/jillesvangurp/httpclient-future/blob/master/src/main/java/com/jillesvangurp/httpclientfuture/FutureSupportingHttpClient.java class in this project fills this need.
+The "FutureSupportingHttpClient":https://github.com/jillesvangurp/httpclient-future/blob/master/src/main/java/com/jillesvangurp/httpclientfuture/HttpClientWithFuture.java class in this project fills this need.
 
 h1. Usage
 
-Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/FutureSupportingHttpClientTest.java
+Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/HttpClientWithFutureTest.java
 
 h1. Installation
 
