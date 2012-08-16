@@ -77,7 +77,6 @@ public class FutureSupportingHttpClientTest {
         client = new HttpClientWithFuture<Boolean>(httpclient, clientThreadPool, new ResponseHandler<Boolean>() {
             @Override
 			public Boolean handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
-                System.out.println("handling request");
                 return response.getStatusLine().getStatusCode() == 200;
             }
         });

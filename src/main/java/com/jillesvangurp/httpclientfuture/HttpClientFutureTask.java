@@ -95,6 +95,5 @@ public class HttpClientFutureTask<V> extends FutureTask<V> {
 
     @Override
     protected void done() {
-        System.out.println("done");
     }
 }
