@@ -1,21 +1,17 @@
 h1. Introduction
 
-Httpclient is a very useful framework that allows you to write well performing applications that use large amounts of connections to other servers. One of our use cases that motivated the creation of this project is using it to make web service calls to backend servers from a front-end server. The number of calls per request varies enormously and the duration per call varies as well. To ensure nice behavior under load, it is sometimes necessary to cancel calls. Additionally, we need to be able to set timeouts on calls.
+Httpclient is a very useful framework that allows you to write well performing applications that use large amounts of connections to other servers. One of our use cases that motivated the creation of this project is using it to make web service calls to backend servers from a front-end server. The number of calls per request varies enormously and the duration per call varies as well. To ensure nice behavior under load, it is sometimes necessary to cancel calls. Additionally, we need to be able to set timeouts on calls. Finally, we want to be able to keep detailed metrics about our external requests and measure things like request duration, response times, number of failures, number of scheduled connections, number of active connections, etc.
 
 Httpclient v4 introduced a new API with loads of improvement. One curious omission was the lack of a way to schedule requests for execution and represent the outcome as a future. 
 
-The "SimpleFutureSupportingHttpClient":https://github.com/jillesvangurp/httpclient-future/blob/master/src/main/java/com/jillesvangurp/httpclientfuture/SimpleFutureSupportingHttpClient.java class in this project fills this need.
+The "FutureSupportingHttpClient":https://github.com/jillesvangurp/httpclient-future/blob/master/src/main/java/com/jillesvangurp/httpclientfuture/FutureSupportingHttpClient.java class in this project fills this need.
 
 h1. Usage
 
-Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/SimpleFutureSupportingHttpClientTest.java
-
-Basically, you provide an httpclient instance, an executor for scheduling the requests, and a response handler for handling the requests.
+Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-future/blob/master/src/test/java/com/jillesvangurp/httpclientfuture/FutureSupportingHttpClientTest.java
 
 h1. Installation
 
-It's a maven project. So, checking it out and doing a mvn clean install should do the trick. If there is demand for it, I may eventually deploy a stable jar somewhere. If you really need this, please contact me.
-
-However, since it is only one class and an interface, I recommend you simply copy it into your project and adapt it to your needs. The license allows you to do this and I have no problems with this.
+It's a maven project. So, checking it out and doing a mvn clean install should do the trick. If there is demand for it, I may eventually deploy a stable jar somewhere. If you really need this, please contact me. Meanwhile, I suggest that you excercise your rights under the license and simply copy and adapt. The "license":https://github.com/jillesvangurp/httpclient-future/blob/master/LICENSE allows you to do this and I have no problems with this.
 
 Should anyone like this licensed differently, please contact me.
