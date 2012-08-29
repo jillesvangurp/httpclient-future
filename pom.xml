@@ -24,27 +24,37 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.jillesvangurp</groupId>
-	<artifactId>httpclientfuture</artifactId>
-	<version>0.1-SNAPSHOT</version>
-	
+	<artifactId>httpclient-future</artifactId>
+	<version>0.1</version>
 
 	<name>httpclient-future</name>
 	<description>A wrapper for httpclient that allows using cancelable futures</description>
 	<url>https://jillesvangurp.com</url>
 
-	<licenses>
-		<license>
-			<name>MIT license</name>
-			<url>https://github.com/jillesvangurp/jsonj/blob/master/LICENSE</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>MIT license</name>
+            <url>https://github.com/jillesvangurp/httpclient-future/blob/master/LICENSE</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-<!--	<scm>
-		<url>git://github.com/jillesvangurp/jsonj.git</url>
-		<connection>scm:git:git@github.com:jillesvangurp/jsonj.git</connection>
-		<developerConnection>scm:git:git://github.com/jillesvangurp/jsonj.git</developerConnection>
-	</scm> -->
+    <scm>
+        <url>git://github.com/jillesvangurp/httpclient-future.git</url>
+        <connection>scm:git:git@github.com:jillesvangurp/httpclient-future.git</connection>
+        <developerConnection>scm:git:git://github.com/jillesvangurp/httpclient-future.git</developerConnection>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>repo</id>
+            <url>https://github.com/jillesvangurp/mvnrepo/raw/master/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <url>https://github.com/jillesvangurp/mvnrepo/raw/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
 
 	<developers>
 		<developer>
