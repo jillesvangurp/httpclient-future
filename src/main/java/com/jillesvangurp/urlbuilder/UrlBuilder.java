@@ -19,7 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-package com.jillesvangurp.httpclientfuture;
+package com.jillesvangurp.urlbuilder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -31,6 +31,12 @@ import java.util.Map.Entry;
 
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * Simple builder class to construct urls out of a base url, one or more post fixes, and query parameters.
+ *
+ * The builder class enables you to not worry about things like trailing slashes, url encoding, etc.
+ *
+ */
 public class UrlBuilder {
 
     private final StringBuilder url;
@@ -50,17 +56,18 @@ public class UrlBuilder {
     }
 
     public String build() {
+    	StringBuilder result=new StringBuilder(url);
         if(params.size() > 0) {
-            url.append('?');
+        	result.append('?');
 
             for (Entry<String, String> entry: params.entrySet()) {
                 String value = entry.getValue();
-                url.append(entry.getKey() + '=' + value);
-                url.append('&');
+                result.append(entry.getKey() + '=' + value);
+                result.append('&');
             }
-            url.deleteCharAt(url.length()-1); // remove trailing &
+            result.deleteCharAt(result.length()-1); // remove trailing &
         }
-        return url.toString();
+        return result.toString();
     }
 
     public URL buildUrl() {
