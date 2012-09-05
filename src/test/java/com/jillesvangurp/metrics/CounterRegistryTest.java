@@ -14,24 +14,24 @@ public final class CounterRegistryTest {
     private enum TestCounters implements Countable {
         foo,bar;
     }
-    
+
     @BeforeMethod
     public void before() {
-        registry = new CounterRegistry();        
+        registry = new CounterRegistry();
     }
-    
+
     @Test
     public void shouldRegisterAndIncrementCounter() {
-        
+
         AtomicLong counter1 = registry.getCounter(TestCounters.foo);
         counter1.incrementAndGet();
         AtomicLong counter2 = registry.getCounter(TestCounters.foo);
         assertThat(counter2, is(counter1));
         assertThat(counter2.get(), is(counter1.get()));
     }
-    
+
     @Test
-    public void shouldMeasuerDurationAndCount() {
+    public void shouldMeasureDurationAndCount() {
         DurationCounter counter = registry.getDurationCounter(TestCounters.foo);
         counter.increment(System.currentTimeMillis()-1500);
         counter.increment(System.currentTimeMillis()-500);
