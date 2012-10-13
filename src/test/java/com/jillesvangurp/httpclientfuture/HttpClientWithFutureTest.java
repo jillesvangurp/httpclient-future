@@ -113,8 +113,8 @@ public class HttpClientWithFutureTest {
 
     @Test(expectedExceptions=TimeoutException.class)
     public void shouldCancel() throws Exception {
-        Future<Boolean> future = client.execute(new HttpGet(UrlBuilder.url("localhost", port).append("ping").queryParam("sleep", "150").build()));
-        future.get(100, TimeUnit.MILLISECONDS);
+        Future<Boolean> future = client.execute(new HttpGet(UrlBuilder.url("localhost", port).append("ping").queryParam("sleep", "300").build()));
+        future.get(50, TimeUnit.MILLISECONDS);
     }
 
     @Test(invocationCount=3)
