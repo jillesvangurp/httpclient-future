@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.params.ClientPNames;
+import org.apache.http.client.params.CookiePolicy;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.impl.client.DecompressingHttpClient;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -114,6 +115,8 @@ public class HttpClientBuilder {
 
     public HttpClient get() {
         HttpParams params = new BasicHttpParams();
+        // work around as described here: http://code.google.com/p/crawler4j/issues/detail?id=136
+        params.setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BROWSER_COMPATIBILITY);
         params.setIntParameter(CoreConnectionPNames.SO_TIMEOUT, timeout);
         params.setIntParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connectTimeout);
         params.setParameter(ClientPNames.HANDLE_REDIRECTS, handleRedirect);
