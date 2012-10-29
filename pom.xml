@@ -208,6 +208,11 @@
             <version>7.2.1.v20101111</version>
             <scope>test</scope>
         </dependency>
-        
+
+                <dependency>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>jcl-over-slf4j</artifactId>
+                    <version>1.7.2</version>
+                </dependency>
 	</dependencies>
 </project>
