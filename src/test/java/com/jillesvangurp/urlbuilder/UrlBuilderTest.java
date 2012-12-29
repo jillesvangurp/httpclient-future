@@ -41,4 +41,8 @@ public class UrlBuilderTest {
 				is("http://www.domain.com:6666/foo/bar?cool=true&escaped=%3D%22&noescape=shit happens"));
 		assertThat(builder.buildUrl().toExternalForm(), is(builder.build()));
 	}
+
+	public void shouldAllowNullAppends() {
+	    assertThat(UrlBuilder.url(host, port).append("foo", null, "bar").build(), is("http://www.domain.com:6666/foo/bar"));
+	}
 }

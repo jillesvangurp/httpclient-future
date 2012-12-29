@@ -84,17 +84,19 @@ public class UrlBuilder {
 
     public UrlBuilder append(boolean encode,String... postFix) {
         for (String part : postFix) {
-            if (url.charAt(url.length() - 1) != '/' && !part.startsWith("/")) {
-                url.append('/');
-            }
-            if(encode) {
-                try {
-                    url.append(URLEncoder.encode(part, "UTF-8"));
-                } catch (UnsupportedEncodingException e) {
-                    throw new IllegalStateException(e);
+            if(StringUtils.isNotBlank(part)) {
+                if (url.charAt(url.length() - 1) != '/' && !part.startsWith("/")) {
+                    url.append('/');
                 }
-            } else {
-                url.append(part);
+                if(encode) {
+                    try {
+                        url.append(URLEncoder.encode(part, "UTF-8"));
+                    } catch (UnsupportedEncodingException e) {
+                        throw new IllegalStateException(e);
+                    }
+                } else {
+                    url.append(part);
+                }
             }
         }
         return this;
