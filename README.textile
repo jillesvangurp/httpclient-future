@@ -1,5 +1,10 @@
 h1. Introduction
 
+*Update* I've been asked to integrate the functionality for this project into httpclient. The relevant ticket may be found here:
+https://issues.apache.org/jira/browse/HTTPCLIENT-1307. I have a github fork of httpclient with the code that will be integrated on the futureclient branch: https://github.com/jillesvangurp/httpclient/tree/futureclient.
+
+*Because of this, I will likely not make any further commits to this repository.* 
+
 Httpclient is a very useful framework that allows you to write well performing applications that use large amounts of connections to other servers. One of our use cases that motivated the creation of this project is using it to make web service calls to backend servers from a front-end server. The number of calls per request varies enormously and the duration per call varies as well. To ensure nice behavior under load, it is sometimes necessary to cancel calls. Additionally, we need to be able to set timeouts on calls. Finally, we want to be able to keep detailed metrics about our external requests and measure things like request duration, response times, number of failures, number of scheduled connections, number of active connections, etc.
 
 Httpclient v4 introduced a new API with loads of improvement. One curious omission was the lack of a way to schedule requests for execution and represent the outcome as a future. 
@@ -13,20 +18,6 @@ Take a look at the "unit test.":https://github.com/jillesvangurp/httpclient-futu
 h1. Installation
 
 It's a maven project. So, checking it out and doing a mvn clean install should do the trick.
-
-Alternatively, you may use my github maven repository, which is where I deploy releases for some of my projects. In order to use this, you have to configure your settings.xml as explained here: https://github.com/jillesvangurp/mvnrepo
-
-Then you can add the following dependency:
-
-<pre>
-<code>
-<dependency>
-    <groupId>com.github.jillesvangurp</groupId>
-    <artifactId>httpclient-future</artifactId>
-    <version>1.0</version>
-</dependency>
-</code>
-</pre>
 
 Alternatively, you can exercise your rights under the license and simply copy and adapt. The "license":https://github.com/jillesvangurp/httpclient-future/blob/master/LICENSE allows you to do this and I have no problems with this.
 
