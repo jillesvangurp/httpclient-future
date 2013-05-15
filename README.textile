@@ -1,7 +1,6 @@
 h1. Introduction
 
-*Update* I've been asked to integrate the functionality for this project into httpclient. The relevant ticket may be found here:
-https://issues.apache.org/jira/browse/HTTPCLIENT-1307. I have a github fork of httpclient with the code that will be integrated on the futureclient branch: https://github.com/jillesvangurp/httpclient/tree/futureclient.
+*Update* I've been asked to integrate the functionality for this project into httpclient. The code for this is available in httpclient 4.3 Beta 1. The relevant class is called FutureRequestExecutionService and it includes most of the relevant functionality that is provided by this project.
 
 *Because of this, I will likely not make any further commits to this repository.* 
 
